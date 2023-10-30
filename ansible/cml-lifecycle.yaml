@@ -1,0 +1,29 @@
+---
+- name: Playing with the CML lifecycle in Ansible
+  hosts: cml
+  gather_facts: no
+
+  tasks:
+  - name: Create and start the lab
+    cisco.cml.cml_lab:
+      host: "{{ inventory_hostname }}"
+      user: "{{ ansible_user }}"
+      password: "{{ ansible_password}}"
+      lab: "CiscoU-Demo"
+      state: started
+      file: "CML-TF-Test.yaml"
+    delegate_to: localhost
+    tags: build
+    register: results
+
+  - name: Delete the lab
+    cisco.cml.cml_lab:
+      host: "{{ inventory_hostname}}"
+      user: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      lab: "CiscoU-Demo"
+      state: absent
+      file: "CML-TF-Test.yaml"
+    delegate_to: localhost
+    tags: clean
+    register: results

@@ -1,0 +1,13 @@
+[all:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_python_interpreter = /usr/bin/env python
+ansible_user = developer
+ansible_password = C1sco12345
+
+[cml]
+131.226.217.162
+
+[cml:vars]
+ansible_user=developer
+ansible_ssh_pass=C1sco12345
+ansible_password=C1sco12345
